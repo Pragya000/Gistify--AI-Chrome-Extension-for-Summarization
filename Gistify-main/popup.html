@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AI Summary</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        min-width: 480px;
+        min-height: 320px;
+        padding: 15px;
+        background: #f9fafc;
+        color: #222;
+      }
+
+      h2 {
+        color: #202124;
+        margin: 8px 0 10px;
+        font-size: 16px;
+        font-weight: 600;
+        border-left: 3px solid #4285f4;
+        padding-left: 6px;
+      }
+
+      .options {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+      }
+
+      select,
+      button,
+      input,
+      textarea {
+        font-family: inherit;
+        font-size: 13px;
+      }
+
+      select {
+        padding: 6px 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background: #fff;
+      }
+
+      button {
+        padding: 6px 12px;
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+      }
+
+      button:hover {
+        background-color: #3367d6;
+      }
+
+      #copy-btn {
+        background-color: #34a853;
+      }
+      #copy-btn:hover {
+        background-color: #2e8b57;
+      }
+
+
+      #result {
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        min-height: 120px;
+        max-height: 280px;
+        background: #fff;
+        font-size: 13px;
+        line-height: 1.4;
+        overflow-y: auto;
+      }
+
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+      }
+
+      .loader {
+        border: 3px solid #eee;
+        border-top: 3px solid #4285f4;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .card {
+        margin-top: 12px;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        background: #fff;
+      }
+
+      input,
+      textarea {
+        padding: 6px;
+        margin: 6px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        resize: vertical;
+      }
+
+      #answer,
+      #eli5-output {
+        margin-top: 6px;
+        padding: 8px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        min-height: 40px;
+        font-size: 13px;
+        background: #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>AI Summary</h2>
+
+    <div class="options">
+      <select id="summary-type">
+        <option value="brief">Brief</option>
+        <option value="detailed">Detailed</option>
+        <option value="bullets">Bullets</option>
+      </select>
+  <button id="summarize">Summarize</button>
+  <button id="copy-btn">Copy</button>
+  <button id="tts-btn">Read Aloud</button>
+
+    </div>
+
+    <div id="result">
+      Select a summary type and click "Summarize" to generate a summary.
+    </div>
+
+    <div id="qa-section" class="card">
+      <h2>Ask a Question</h2>
+      <input type="text" id="question-input" placeholder="Type your question..." />
+      <button id="ask-btn">Ask</button>
+      <div id="answer"></div>
+    </div>
+
+    <div id="eli5-section" class="card">
+      <h2>Explain Like I'm 5 (ELI5)</h2>
+      <textarea
+        id="eli5-input"
+        placeholder="Paste technical or complex text..."
+        rows="3"
+      ></textarea>
+      <button id="eli5-btn">Explain Simply</button>
+      <div id="eli5-output"></div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
